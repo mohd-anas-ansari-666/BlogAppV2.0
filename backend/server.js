@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-
+const serverless = require('serverless-http'); // Import serverless-http for vercel
 // Load environment variables
 dotenv.config();
 
@@ -11,7 +11,7 @@ const app = express();
 
 // Use CORS middleware
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Content-Type, Authorization, x-auth-token'
 }));
@@ -26,8 +26,12 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/blogs', require('./routes/blog'));
 
-// Set the port
-const PORT = process.env.PORT || 5000;
+// config for local system 
+// // Set the port
+// const PORT = process.env.PORT || 5000;
+// // Start the server
+// app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
-// Start the server
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Config for Vercel
+// Export the handler for Vercel serverless functions
+module.exports.handler = serverless(app); // Wrap the app in serverless-http
