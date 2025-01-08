@@ -28,7 +28,7 @@ const DetailBlogPage = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/blogs/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs/${id}`);
         setBlog(res.data);
       } catch (err) {
         console.error(err);

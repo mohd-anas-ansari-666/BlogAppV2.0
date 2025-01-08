@@ -52,7 +52,7 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+      const res = await axios.post('${process.env.REACT_APP_API_URL}/api/auth/register', { name, email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/');
     } catch (err) {
