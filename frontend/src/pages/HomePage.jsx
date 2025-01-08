@@ -41,7 +41,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('${process.env.REACT_APP_API_URL}/api/blogs');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blogs`);
         setBlogs(res.data);
       } catch (err) {
         console.error(err);

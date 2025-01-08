@@ -68,7 +68,7 @@ const EditorPage = () => {
     }
 
     try {
-      await axios.post('${process.env.REACT_APP_API_URL}/api/blogs', { title, content }, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/blogs`, { title, content }, {
         headers: {
           'x-auth-token': token
         }
