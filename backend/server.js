@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-const serverless = require('serverless-http'); // Import serverless-http for vercel
+// const serverless = require('serverless-http'); // Import serverless-http for vercel
 // Load environment variables
 dotenv.config();
 
@@ -27,11 +27,11 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/blogs', require('./routes/blog'));
 
 // config for local system 
-// // Set the port
-// const PORT = process.env.PORT || 5000;
-// // Start the server
-// app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Set the port
+const PORT = process.env.PORT || 5000;
+// Start the server
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // Config for Vercel
 // Export the handler for Vercel serverless functions
-module.exports.handler = serverless(app); // Wrap the app in serverless-http
+// module.exports.handler = serverless(app); // Wrap the app in serverless-http
